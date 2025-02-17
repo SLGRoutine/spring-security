@@ -1,0 +1,69 @@
+server:
+  port: 8080
+
+spring:
+  security:
+    filter:
+      order: 0
+  main:
+    allow-circular-references: true
+  datasource:
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 30000
+      validation-query: select 'x'
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: false
+      filters: stat,wall,slf4j
+      max-pool-prepared-statement-per-connection-size: -1
+      use-global-data-source-stat: true
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: /druid/*,*.js,*.gif,*.jpg,*.png,*.css,*.ico
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: false
+        login-username: root
+        login-password: a
+        allow:
+        deny:
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: a
+    password: a
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://120.26.56.174:3306/ssmdemo?useUnicode=true&characterEncoding=utf-8
+
+
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*.xml  # 指定 Mapper XML 文件路径
+  type-aliases-package: com.rjgf.entity       # 配置实体类的包路径，简化 XML 里的 resultType
+  configuration:
+    map-underscore-to-camel-case: true       # 开启数据库字段与 Java 驼峰命名的映射
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # 开启 SQL 日志打印
+  global-config:
+    db-config:
+      id-type: AUTO
+
+
+
+
+#mybatis 分页插件
+#pagehelper:
+#  helper-dialect: mysql  # 数据库方言（MySQL）
+#  reasonable: true  # 启用合理化分页，防止 pageNum < 1 或 pageNum 超过总页数
+#  support-methods-arguments: true  # 允许通过方法参数传递分页参数
+#  params: count=countSql  # 支持 PageHelper.startPage(Object params) 方法
+#  auto-runtime-dialect: true  # 允许运行时自动识别数据库类型（适用于多数据源）
+
+
+
+
