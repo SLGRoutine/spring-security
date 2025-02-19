@@ -23,7 +23,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Autowired
     private UserMapper userMapper;
 
-
     @Autowired              //利用set注入   防止 循环依赖
     public void setUserMapper(UserMapper userMapper) {
         this.userMapper = userMapper;
